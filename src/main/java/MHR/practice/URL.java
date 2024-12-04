@@ -23,4 +23,20 @@ public class URL {
     @Column
     @NotNull
     private String shortURL;
+
+    public String getRawURL() {
+        return rawURL;
+    }
+
+    public void setRawURL(final String rawURL) {
+        this.rawURL = rawURL;
+    }
+
+    public String getShortURL() {
+        return shortURL;
+    }
+
+    public void setShortURL(final String shortURL) {
+        this.shortURL = shortURL;
+    }
 }
