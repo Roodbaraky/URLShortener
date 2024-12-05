@@ -13,11 +13,10 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Table(name = "T_URL")
 @Schema
 public class URL {
-    @Id
-    @GeneratedValue
-    private Long id;
+
     @Column
     @NotNull
+    @Id
     private String rawURL;
 
     @Column
@@ -39,4 +38,6 @@ public class URL {
     public void setShortURL(final String shortURL) {
         this.shortURL = shortURL;
     }
+
+
 }

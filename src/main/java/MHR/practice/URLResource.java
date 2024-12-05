@@ -27,9 +27,9 @@ public class URLResource {
 
     @GET
     @Path("{shortUrl}")
-    public Response getUrl(@PathParam("shortUrl") String shortUrl){
+    public Response getUrl(@PathParam("shortUrl") String shortUrl) {
         String rawUrl = service.find(shortUrl);
-        if(rawUrl==null){
+        if (rawUrl == null) {
             return Response.status(NOT_FOUND).build();
         }
         return Response.ok(rawUrl).build();
@@ -37,9 +37,17 @@ public class URLResource {
 
     @POST
     public Response convertURL(URL url) {
-        URL shortURl = service.generate(url);
-        URI createdURI = uriInfo.getAbsolutePathBuilder().path((shortURl.getShortURL())).build();
-        return Response.created(createdURI).entity(url).build();
+        URL existingURL = service.check(url);
+
+        if (existingURL != null) {
+
+            return Response.ok(existingURL).build();
+        }
+
+        URL newURL = service.generate(url);
+        URI createdURI = uriInfo.getAbsolutePathBuilder().path(newURL.getShortURL()).build();
+
+        return Response.created(createdURI).entity(newURL).build();
     }
 
 }

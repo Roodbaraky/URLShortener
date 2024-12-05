@@ -20,14 +20,33 @@ public class URLService {
     @Inject
     URLGenerator generator;
 
+    public URL check(URL url) {
+        TypedQuery<URL> query = em.createQuery("SELECT u FROM URL u WHERE u.rawURL = :rawURL", URL.class);
+        query.setParameter("rawURL", url.getRawURL());
+
+        if (!query.getResultList().isEmpty()) {
+            System.out.println(query.getResultList().getFirst());
+            url.setShortURL((query.getResultList().getFirst()).getShortURL());
+            return url;
+        }
+        return null;
+    }
+
     public URL generate(URL url) {
-        url.setShortURL(generator.generateURL(url.getRawURL()));
-        em.persist(url);
+        TypedQuery<URL> query = em.createQuery("SELECT u FROM URL u WHERE u.rawURL = :rawURL", URL.class);
+        query.setParameter("rawURL", url.getRawURL());
+
+        if (!query.getResultList().isEmpty()) {
+            System.out.println(query.getResultList().getFirst());
+            url.setShortURL((query.getResultList().getFirst()).getShortURL());
+        } else {
+            url.setShortURL(generator.generateURL(url.getRawURL()));
+            em.persist(url);
+        }
         return url;
     }
 
     public String find(String shortUrl) {
-        System.out.println(shortUrl);
         TypedQuery<URL> query = em.createQuery("SELECT u FROM URL u WHERE u.shortURL = :shortUrl", URL.class);
         query.setParameter("shortUrl", shortUrl);
         return query.getResultList().getFirst().getRawURL();
