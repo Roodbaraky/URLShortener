@@ -2,7 +2,6 @@ package MHR.practice;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -38,6 +37,5 @@ public class URL {
     public void setShortURL(final String shortURL) {
         this.shortURL = shortURL;
     }
-
 
 }

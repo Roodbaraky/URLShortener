@@ -46,9 +46,10 @@ public class URLService {
         return url;
     }
 
-    public String find(String shortUrl) {
+    public String find(String shortUrl) throws Exception {
         TypedQuery<URL> query = em.createQuery("SELECT u FROM URL u WHERE u.shortURL = :shortUrl", URL.class);
         query.setParameter("shortUrl", shortUrl);
+
         return query.getResultList().getFirst().getRawURL();
     }
 }

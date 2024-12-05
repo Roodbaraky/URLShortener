@@ -1,6 +1,7 @@
 package MHR.practice;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
+import static jakarta.ws.rs.core.Response.Status.FOUND;
 import static jakarta.ws.rs.core.Response.Status.NOT_FOUND;
 
 import java.net.URI;
@@ -28,11 +29,12 @@ public class URLResource {
     @GET
     @Path("{shortUrl}")
     public Response getUrl(@PathParam("shortUrl") String shortUrl) {
-        String rawUrl = service.find(shortUrl);
-        if (rawUrl == null) {
+        try {
+            String rawUrl = service.find(shortUrl);
+            return Response.status(FOUND).location(URI.create(rawUrl)).build();
+        } catch (Exception e) {
             return Response.status(NOT_FOUND).build();
         }
-        return Response.ok(rawUrl).build();
     }
 
     @POST
@@ -40,13 +42,11 @@ public class URLResource {
         URL existingURL = service.check(url);
 
         if (existingURL != null) {
-
             return Response.ok(existingURL).build();
         }
 
         URL newURL = service.generate(url);
         URI createdURI = uriInfo.getAbsolutePathBuilder().path(newURL.getShortURL()).build();
-
         return Response.created(createdURI).entity(newURL).build();
     }
 
