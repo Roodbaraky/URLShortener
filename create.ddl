@@ -1,6 +1,6 @@
 
     create table T_URL (
-        rawURL varchar(255) not null,
-        shortURL varchar(255),
-        primary key (rawURL)
+        rawURL varchar(255) not null unique,
+        shortURL varchar(255) not null unique,
+        primary key (rawURL, shortURL)
     );

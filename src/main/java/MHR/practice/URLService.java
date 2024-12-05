@@ -2,6 +2,8 @@ package MHR.practice;
 
 import static jakarta.transaction.Transactional.TxType.REQUIRED;
 
+import java.util.Arrays;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -9,6 +11,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Named
 @Transactional(REQUIRED)
@@ -37,7 +41,15 @@ public class URLService {
         TypedQuery<URL> query = em.createQuery("SELECT u FROM URL u WHERE u.rawURL = :rawURL", URL.class);
         query.setParameter("rawURL", url.getRawURL());
         url.setShortURL(generator.generateURL(url.getRawURL()));
-        em.persist(url);
+        while (true) {
+            try {
+                em.persist(url);
+                break;
+            } catch (Exception e) {
+                System.out.println(Arrays.toString(e.getStackTrace()));
+                url.setShortURL(generator.generateURL(url.getShortURL()));
+            }
+        }
         return url;
     }
 

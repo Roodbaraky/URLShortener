@@ -1,7 +1,6 @@
 package MHR.practice;
 
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -22,7 +21,7 @@ public class URLGenerator {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = digest.digest(url.getBytes());
-            return ByteBuffer.wrap(hashBytes).getLong();
+            return (long) (ByteBuffer.wrap(hashBytes).getLong()*(Math.random()+1));
         } catch (Exception e) {
             throw new RuntimeException("Error hashing URL", e);
         }

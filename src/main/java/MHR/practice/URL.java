@@ -7,19 +7,22 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 @Table(name = "T_URL")
 @Schema
 public class URL {
 
-    @Column
+    @Column(unique = true)
     @NotNull
     @Id
     private String rawURL;
 
-    @Column
+    @Id
+    @Column(unique = true)
     @NotNull
+
     private String shortURL;
 
     public String getRawURL() {
