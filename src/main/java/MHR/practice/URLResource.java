@@ -58,7 +58,6 @@ public class URLResource {
             service.delete(shortUrl);
             return Response.noContent().build();
         } catch (Exception e) {
-            System.out.println(e);
             return Response.status(NOT_FOUND).build();
         }
     }
