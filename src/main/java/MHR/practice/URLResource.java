@@ -8,6 +8,7 @@ import java.net.URI;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -50,4 +51,15 @@ public class URLResource {
         return Response.created(createdURI).entity(newURL).build();
     }
 
+    @DELETE
+    @Path("{shortUrl}")
+    public Response deleteUrl(@PathParam("shortUrl") String shortUrl) {
+        try {
+            service.delete(shortUrl);
+            return Response.noContent().build();
+        } catch (Exception e) {
+            System.out.println(e);
+            return Response.status(NOT_FOUND).build();
+        }
+    }
 }

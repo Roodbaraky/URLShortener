@@ -6,6 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
@@ -51,5 +52,15 @@ public class URLService {
         query.setParameter("shortUrl", shortUrl);
 
         return query.getResultList().getFirst().getRawURL();
+    }
+
+    public void delete(String shortUrl) throws Exception{
+       Query query = em.createQuery("delete from URL u WHERE u.shortURL = :shortUrl");
+        query.setParameter("shortUrl", shortUrl);
+        int rowsDeleted = query.executeUpdate();
+        if (rowsDeleted == 0) {
+            throw new Exception("No URL found with the given shortUrl: " + shortUrl);
+        }
+
     }
 }
