@@ -39,14 +39,14 @@ public class URLResource {
     }
 
     @POST
-    public Response convertURL(URL url) {
-        URL existingURL = service.check(url);
+    public Response convertURL(URLTO url) {
+        URLTO existingURL = service.check(url);
 
         if (existingURL != null) {
             return Response.ok(existingURL).build();
         }
 
-        URL newURL = service.generate(url);
+        URLTO newURL = service.generate(url);
         URI createdURI = uriInfo.getAbsolutePathBuilder().path(newURL.getShortURL()).build();
         return Response.created(createdURI).entity(newURL).build();
     }
