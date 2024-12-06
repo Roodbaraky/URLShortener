@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 
 module.exports = (req, res) => {
-    const quarkusApp = spawn('java', ['-jar', './target/url-shortener-1.0.0-SNAPSHOT.jar-1.0.0-SNAPSHOT.jar']);
+    const quarkusApp = spawn('java', ['-jar', './target/url-shortener-1.0.0-SNAPSHOT.jar']);
 
     quarkusApp.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
