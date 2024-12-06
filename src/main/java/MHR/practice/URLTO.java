@@ -8,13 +8,11 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 public class URLTO {
 
     @NotNull
-
     private String rawURL;
 
 
 
     @NotNull
-
     private String shortURL;
 
     public String getRawURL() {
