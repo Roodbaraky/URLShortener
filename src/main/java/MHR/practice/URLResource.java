@@ -4,6 +4,7 @@ import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 import static jakarta.ws.rs.core.Response.Status.FOUND;
 import static jakarta.ws.rs.core.Response.Status.NOT_FOUND;
 
+import java.io.File;
 import java.net.URI;
 
 import jakarta.inject.Inject;
@@ -28,6 +29,13 @@ public class URLResource {
     URLService service;
 
     @GET
+    @Produces("text/html")
+    public File serveStaticFile() {
+        return new File("src/main/resources/META-INF/resources/index.html");
+    }
+
+    @GET
+    @Produces("text/html")
     @Path("{shortUrl}")
     public Response getUrl(@PathParam("shortUrl") String shortUrl) {
         try {

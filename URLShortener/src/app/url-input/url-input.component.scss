@@ -1,0 +1,72 @@
+$url-background-color: #f4f4f9;
+$primary-color: #6200ea;
+$button-hover-color: darken($primary-color, 10%);
+$button-text-color: white;
+
+.url-shortener-form {
+ width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $url-background-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+
+
+  overflow: hidden;
+}
+
+.url-input {
+  width: 100%;
+  margin-bottom: 20px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  input {
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 20px;
+
+  .generate-btn, .copy-btn {
+    padding: 12px 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    color: $button-text-color;
+    background-color: $primary-color;
+    width: 80%;
+
+    &:hover {
+      background-color: $button-hover-color;
+    }
+  }
+}
+
+.shortened-url {
+  margin-top: 20px;
+  text-align: center;
+
+  p {
+    font-size: 16px;
+    a {
+      color: $primary-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

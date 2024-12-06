@@ -1,0 +1,27 @@
+$app-background-color: #fafafa;
+$app-header-background: #6200ea;
+$app-header-text-color: white;
+
+.app-container {
+  text-align: center;
+  background-color: $app-background-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-header {
+  background-color: $app-header-background;
+  width: 100%;
+  padding: 20px;
+  color: $app-header-text-color;
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}

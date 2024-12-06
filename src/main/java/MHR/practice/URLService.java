@@ -48,6 +48,9 @@ public class URLService {
         if (url == null) {
             throw new Exception("No URL found with the given shortUrl: " + shortUrl);
         }
+        if (!url.getRawURL().startsWith("http://") && !url.getRawURL().startsWith("https://")) {
+            url.setRawURL("http://" + url.getRawURL());
+        }
         return url.getRawURL();
     }
 

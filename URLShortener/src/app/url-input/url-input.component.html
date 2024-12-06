@@ -1,0 +1,15 @@
+<form class="url-shortener-form">
+  <mat-form-field class="url-input">
+    <mat-label>Long URL</mat-label>
+    <input class="url-input" matInput placeholder="Enter a URL to shorten..." [(ngModel)]="longURL" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+
+  <div class="actions">
+    <button type="button" (click)="generateShortURL()" class="generate-btn">Generate</button>
+    <button *ngIf="shortURL" type="button" (click)="copyToClipboard()" class="copy-btn">Copy</button>
+  </div>
+
+  <div *ngIf="shortURL" class="shortened-url">
+    <p><strong>Shortened URL:</strong> <a [href]="shortURL" target="_blank">{{ shortURL }}</a></p>
+  </div>
+</form>

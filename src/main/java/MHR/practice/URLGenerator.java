@@ -21,7 +21,7 @@ public class URLGenerator {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = digest.digest(url.getBytes());
-            return (long) (ByteBuffer.wrap(hashBytes).getLong()*(Math.random()+1));
+            return (long) Math.abs(ByteBuffer.wrap(hashBytes).getLong()*(Math.random()+1));
         } catch (Exception e) {
             throw new RuntimeException("Error hashing URL", e);
         }
