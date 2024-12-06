@@ -60,14 +60,18 @@
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-junit5</artifactId>
-            <scope>test</scope>
+            <artifactId>quarkus-container-image-docker</artifactId>
         </dependency>
 		<dependency>
-			<groupId>jakarta.platform</groupId>
-			<artifactId>jakarta.jakartaee-web-api</artifactId>
-			<version>10.0.0</version>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-junit5</artifactId>
+            <scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>10.0.0</version>
+        </dependency>
 	</dependencies>
 
     <build>
@@ -134,7 +138,9 @@
                 </property>
             </activation>
             <properties>
-                <skipITs>false</skipITs>
+				<quarkus.package.type>uber-jar</quarkus.package.type>
+				
+				<skipITs>false</skipITs>
                 <quarkus.native.enabled>true</quarkus.native.enabled>
             </properties>
         </profile>
