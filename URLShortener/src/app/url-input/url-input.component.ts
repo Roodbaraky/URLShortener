@@ -28,7 +28,7 @@ export class URLInputComponent {
   generateShortURL() {
 
     console.log(`Generate shortURL from ${this.longURL}`)
-    this.http.post<{ shortURL: string }>(this.apiURL, {rawURL: this.longURL})
+    this.http.post<{ shortURL: string }>(window.location.href, {rawURL: this.longURL})
       .subscribe({
         next: (response) => {
           this.shortURL = response.shortURL;
@@ -42,8 +42,8 @@ export class URLInputComponent {
 
   copyToClipboard() {
 
-    navigator.clipboard.writeText(this.shortURL).then(r => {
-      console.log("Copied to clipboard")
+    navigator.clipboard.writeText(window.location.href+this.shortURL).then(r => {
+      console.log("Copied to clipboard 2")
     })
 
   }

@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080'
+  apiUrl: 'https://urlshortener-damp-smoke-3707.fly.dev/'
 };

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://url-shortener.koo.codes'
+  apiUrl: 'https://short-url.koo.codes'
 };

@@ -1,8 +1,13 @@
+
 FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
+# Copy the Quarkus application files
+COPY ./target/quarkus-app/quarkus-run.jar /app/quarkus-run.jar
+COPY ./target/quarkus-app/ /app/
 
-COPY ./target/url-shortener-1.0.0-SNAPSHOT.jar /app/quarkus-run.jar
+EXPOSE 8080
 
+# Run the application
 CMD ["java", "-jar", "/app/quarkus-run.jar"]
