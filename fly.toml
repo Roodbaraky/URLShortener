@@ -1,0 +1,33 @@
+# fly.toml app configuration file generated for urlshortener-damp-smoke-3707 on 2024-12-09T12:19:06Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'urlshortener-damp-smoke-3707'
+primary_region = 'lhr'
+
+[build]
+
+[env]
+PORT = "8080"
+
+[[services]]
+internal_port = 8080
+protocol = "tcp"
+[[services.ports]]
+port = 80
+handlers = ["http"]
+
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
