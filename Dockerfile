@@ -1,4 +1,16 @@
 
+#FROM node:22
+#
+#WORKDIR ./URLShortener
+#
+#RUN ng build --configuration production
+#
+#COPY ./dist/urlshortener/browser ../resources/META-INF/resources
+#
+#WORKDIR ../
+#
+#RUN ./mvnw clean package
+
 FROM openjdk:21-jdk-slim
 
 WORKDIR /app

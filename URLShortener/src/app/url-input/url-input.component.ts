@@ -16,9 +16,10 @@ import {environment} from '../../environments/environtment';
   styleUrl: './url-input.component.scss'
 })
 export class URLInputComponent {
-  longURL: string='';
-  shortURL: string='';
-  apiURL:string= environment.apiUrl;
+  longURL: string = '';
+  shortURL: string = '';
+  apiURL: string = environment.apiUrl;
+  fullURL: string = window.location.href
 
 
   constructor(private http: HttpClient) {
@@ -32,6 +33,7 @@ export class URLInputComponent {
       .subscribe({
         next: (response) => {
           this.shortURL = response.shortURL;
+          this.fullURL = window.location.href + this.shortURL;
         },
         error: (error) => {
           console.error('Error shortening URL:', error);
@@ -42,7 +44,7 @@ export class URLInputComponent {
 
   copyToClipboard() {
 
-    navigator.clipboard.writeText(window.location.href+this.shortURL).then(r => {
+    navigator.clipboard.writeText(window.location.href + this.shortURL).then(r => {
       console.log("Copied to clipboard 2")
     })
 

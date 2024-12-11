@@ -10,6 +10,6 @@
   </div>
 
   <div *ngIf="shortURL" class="shortened-url">
-    <p><strong>Shortened URL:</strong> <a [href]="shortURL" target="_blank">{{ shortURL }}</a></p>
+    <p><strong>Shortened URL:</strong> <a [href]="shortURL" target="_blank">{{fullURL}}</a></p>
   </div>
 </form>
